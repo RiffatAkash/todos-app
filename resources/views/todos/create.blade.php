@@ -22,13 +22,28 @@ Create
                 <div class="card-header">Create New Todo</div>
 
                 <div class="card-body">
-                
-                    <form action="">
+
+                    @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="list-group">
+                        @foreach($errors->all() as $error)
+                        <div class="list-group-item">
+                            {{$error}}
+                        </div>
+                        @endforeach
+                        </ul>
+                    </div>
+                    @endif               
+                    <form action="/store-todos" method="POST">
+                        @csrf
                         <div class="form-group">
                         <input type="text" class="form-control" placeholder="name" name="name">
                         </div>
                         <div class="form-group">
-                            <textarea name="description" placeholder="description"  cols="5" rows="50" class="fomr-content"></textarea>
+                            <textarea name="description" placeholder="description"  cols="5" rows="5" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group text-center">
+                            <button class="btn btn-success">Create Todo</button>
                         </div>
                     </form>
 
